@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.dao;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+
+import com.example.model.User;
 
 @Repository
 public interface UserRepo extends JpaRepository<User, Integer> {

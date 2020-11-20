@@ -1,6 +1,5 @@
-package com.example.demo;
+package com.example.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.dao.UserRepo;
+import com.example.model.User;
+
+import service.UserService;
+
 @RestController
 public class HomeController {
 	
 	@Autowired UserRepo repo;
+	@Autowired UserService serve;
 
 	@RequestMapping("/")
 	public String home()
@@ -29,19 +34,13 @@ public class HomeController {
 	public String insert(User user)
 	
 	{
-		try {
-		repo.save(user);
-		return "inserted successfully";
-		}
-		catch(Exception e){
-			return e.toString();
-		}
+		return serve.save(user);
 		
 	}
 	
 	@GetMapping("/getdata")
 	public List<User> getData(){
-		return (List<User>) repo.findAll();
+		return serve.getUser();
 	}
 	
 		
